@@ -1,0 +1,30 @@
+.containerNewGame {
+  background-image: url('../assets/images/fondobotonjugar.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.newGameButton {
+  background-color: #cf737f;
+  padding: 20px 30px;
+  font-size: 24px;
+  color: #3c3c3c;
+  border: 2px solid #cacaca;
+  border-radius: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.newGameButton:hover {
+  background-color: #dc7d8a;
+  border-color: white;
+}
+
+.newGameButton:active {
+  background-color: #bd6a75;
+  border-color: #969696;
+}

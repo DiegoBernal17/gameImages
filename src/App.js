@@ -1,25 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import NewGame from './screens/NewGame';
+import InGame from './screens/InGame';
+import EndGame from './screens/EndGame';
+import Error from './screens/Error'
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      screen: "NewGame",
+      data: ""
+    }
+  }
+
+  handlerScreens = (screen) => {
+    this.setState({ screen });
+  }
+
+  handlerData = (data) => {
+    this.setState({screen: "EndGame", data});
+  }
+
   render() {
+    let screen;
+    if(this.state.screen === "NewGame") {
+      screen = <NewGame onFinishScreen={this.handlerScreens} />
+    } else if (this.state.screen === "InGame") {
+      screen = <InGame onFinishScreen={this.handlerData} />
+    } else if ( this.state.screen === "EndGame" ) {
+      screen = <EndGame onFinishScreen={this.handlerScreens} game={this.state.data} />
+    } else {
+      screen = <Error />
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        { screen }
       </div>
     );
   }
