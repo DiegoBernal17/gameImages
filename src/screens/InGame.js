@@ -2,6 +2,7 @@ import React from 'react';
 import './InGame.css';
 import SectionGuest from '../components/SectionGuest';
 import {BienHecho, MalHecho, RandomAnimals} from '../components/Images';
+import ReactAudioPlayer from 'react-audio-player';
 
 const aleatorios = RandomAnimals().slice();
 export default class InGame extends React.Component {
@@ -41,7 +42,7 @@ export default class InGame extends React.Component {
       } else {
         this.props.onFinishScreen({ answers: this.state.answers, score: this.state.score});
       }  
-    },2000);
+    },4000);
   }
 
   render() {
@@ -52,6 +53,9 @@ export default class InGame extends React.Component {
           <img 
             src={ this.state.correct ? BienHecho.image : MalHecho.image } 
             alt={ this.state.correct ? "Bien" : "Mal" } />
+            { this.state.correct ?
+               <ReactAudioPlayer src={require('../assets/sounds/correcto.mp3')} autoPlay /> : 
+               <ReactAudioPlayer src={require('../assets/sounds/incorrecto.mp3')} autoPlay /> }
           <h1>{ this.state.correct ? BienHecho.text : MalHecho.text }</h1>
         </div>
         );
